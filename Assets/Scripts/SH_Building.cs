@@ -14,6 +14,11 @@ public class SH_Building : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        if (SH_GameManager.GM.DebugMode == true)
+        {
+            SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
+        }
 	
 	}
 	
@@ -49,6 +54,7 @@ public class SH_Building : MonoBehaviour {
         {
             
             CurrentState = BuildingState.Placed;
+            SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
             
         }
 
@@ -61,8 +67,13 @@ public class SH_Building : MonoBehaviour {
     public virtual void MoveToMouse()
     {
         
-        Vector3 pos = Input.mousePosition;
-        pos.z = transform.position.z - Camera.main.transform.position.z;
-        transform.position = Camera.main.GetComponent<Camera>().ScreenToWorldPoint(pos);
+        Vector3 Mpos = Input.mousePosition;
+        Mpos.z = transform.position.z - Camera.main.transform.position.z;
+        Vector3 Bpos = Camera.main.GetComponent<Camera>().ScreenToWorldPoint(Mpos);
+        transform.position = new Vector3(Utility.RoundToPointFive(Bpos.x), Utility.RoundToPointFive(Bpos.y), Bpos.z);
     }
+
+
+
+
 }
