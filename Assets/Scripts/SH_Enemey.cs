@@ -8,6 +8,7 @@ public class SH_Enemey : MonoBehaviour {
     public GameObject TargetBuilding;
     public Vector3 CurrentDestination;
     private Vector3 previosPosition;
+    private Vector3 SecondPrevious;
 
     public void Start()
     {
@@ -56,9 +57,14 @@ public class SH_Enemey : MonoBehaviour {
         
         potentialDestinations.Remove(CurrentDestination);
 
+        // tracks the last 2 steps so mob can't backtrack along it's path unless thats the only viable option
         if (potentialDestinations.Contains(previosPosition))
         {
             potentialDestinations.Remove(previosPosition);
+        }
+        if (potentialDestinations.Contains(SecondPrevious))
+        {
+            potentialDestinations.Remove(SecondPrevious);
         }
 
         // remove invalid tiles
@@ -72,7 +78,8 @@ public class SH_Enemey : MonoBehaviour {
             }
         }
 
-        //bool destUpdated = false;
+        
+        SecondPrevious = previosPosition;
         previosPosition = CurrentDestination;
         if(potentialDestinations.Count > 0)
             CurrentDestination = potentialDestinations[(int)Random.Range(0,potentialDestinations.Count-1 )];
@@ -82,16 +89,14 @@ public class SH_Enemey : MonoBehaviour {
             if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))
             {
                 CurrentDestination = potentialDestinations[i];
-                //continue;
+                
+
             }
-            //destUpdated = true;
+           
             
         }
 
-        //if (!destUpdated)
-        //{
-        //    // todo: add more navigation logic 
-        //}
+        
 
 
     }
