@@ -22,6 +22,8 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
+    public List<GameObject> Mobs;
+
     public static SH_GameManager GM;
 
     void Awake()
