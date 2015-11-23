@@ -5,9 +5,12 @@ using System.Collections.Generic;
 public class SH_GameManager : MonoBehaviour {
 
 
-    public List<GameObject> ViableTargets;
-    public bool DebugMode;
+    public List<GameObject> ViableTargets;// lists the buildings that will be viable targts for enemy mobs
+    public bool DebugMode;// debug mode
     private Dictionary<Vector3, GameObject> _OccupiedGrids;
+    /// <summary>
+    /// returs a list of all grids occuped by stationay game objects, orgnised by vector location 
+    /// </summary>
     public Dictionary<Vector3, GameObject> OccupiredGrids
     {
         get

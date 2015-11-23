@@ -7,8 +7,9 @@ public class SH_Enemey : MonoBehaviour {
 
     public GameObject TargetBuilding;
     public Vector3 CurrentDestination;
-    private Vector3 previosPosition;
+    private Vector3 previousPosition;
     private Vector3 SecondPrevious;
+    public float Speed = 0.5f;
 
     public void Start()
     {
@@ -23,11 +24,14 @@ public class SH_Enemey : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        
+
         if (transform.position == TargetBuilding.transform.position)
             return;
 
         if (transform.position == CurrentDestination)
         {
+            
             updateCurrentDestination();
         }
         
@@ -35,6 +39,9 @@ public class SH_Enemey : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// updates the current destiation vector. if it can't up vector all it does is up date it's previous and second previous positons to allow it to backtrack
+    /// </summary>
     private void updateCurrentDestination()
     {
         List<Vector3> potentialDestinations = new List<Vector3>();
@@ -58,9 +65,9 @@ public class SH_Enemey : MonoBehaviour {
         potentialDestinations.Remove(CurrentDestination);
 
         // tracks the last 2 steps so mob can't backtrack along it's path unless thats the only viable option
-        if (potentialDestinations.Contains(previosPosition))
+        if (potentialDestinations.Contains(previousPosition))
         {
-            potentialDestinations.Remove(previosPosition);
+            potentialDestinations.Remove(previousPosition);
         }
         if (potentialDestinations.Contains(SecondPrevious))
         {
@@ -78,9 +85,11 @@ public class SH_Enemey : MonoBehaviour {
             }
         }
 
-        
-        SecondPrevious = previosPosition;
-        previosPosition = CurrentDestination;
+        // updates path currently follow
+        SecondPrevious = previousPosition;
+        previousPosition = CurrentDestination;
+
+        //updats to next destination
         if(potentialDestinations.Count > 0)
             CurrentDestination = potentialDestinations[(int)Random.Range(0,potentialDestinations.Count-1 )];
         for (int i = 0; i < potentialDestinations.Count; i++)
@@ -101,5 +110,5 @@ public class SH_Enemey : MonoBehaviour {
 
     }
 
-    public float Speed = 0.5f;
+    
 }
