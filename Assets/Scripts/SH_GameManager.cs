@@ -22,7 +22,26 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// list of all "Mobs" currently active
+    /// </summary>
     public List<GameObject> Mobs;
+
+    public GameObject AmmoPrefab;
+    private List<GameObject> _Ammo;
+    /// <summary>
+    /// list of all ammo in scene. check for available unused ammo before instansiate a new one
+    /// </summary>
+    public List<GameObject> Ammo
+    {
+        get
+        {
+            if (_Ammo == null)
+                _Ammo = new List<GameObject>();
+
+            return _Ammo;
+        }
+    }
 
     public static SH_GameManager GM;
 

@@ -23,7 +23,7 @@ public class SH_BattleTower : SH_Building {
     private void TrackTarget()
     {
         transform.LookAt(transform.position + new Vector3(0, 0, 1), TargetEnemy.transform.position - transform.position);
-        
+        Shoot();
 
     }
 
@@ -32,6 +32,12 @@ public class SH_BattleTower : SH_Building {
     /// </summary>
     private void Shoot()
     {
+        GameObject projectile;
+
+        if (SH_GameManager.GM.Ammo.Count < 1)
+            projectile = Instantiate(SH_GameManager.GM.AmmoPrefab, transform.position, transform.rotation) as GameObject;
+
+
         return;
     }
         
