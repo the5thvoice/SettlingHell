@@ -23,10 +23,21 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
+
+    private List<GameObject> _Enemies;
     /// <summary>
-    /// list of all "Mobs" currently active
+    /// list of all "Enemies" currently active
     /// </summary>
-    public List<GameObject> Mobs;
+    public List<GameObject> Enemies
+    {
+        get
+        {
+            if (_Enemies == null)
+                _Enemies = new List<GameObject>();
+
+            return _Enemies;
+        }
+    }
 
     public GameObject AmmoPrefab;
     private List<GameObject> _Ammo;
@@ -44,15 +55,22 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Instansiate a projectile to be fired by Towers
+    /// </summary>
+    /// <returns>an instance of the Ammo Prefab</returns>
     internal GameObject GetAmmo()
     {
-        foreach (GameObject GO in Ammo)
-        {
-            if (GO.GetComponent<SH_Projectile>().OnScreen)
-                continue;
-            return GO;
-        }
 
+        if (Ammo.Count > 1)
+        {
+            foreach (GameObject GO in Ammo)
+            {
+                if (GO.GetComponent<SH_Projectile>().OnScreen)
+                    continue;
+                return GO;
+            }
+        }
         return Instantiate(AmmoPrefab) as GameObject;
     }
 
@@ -78,4 +96,8 @@ public class SH_GameManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+
+    
 }

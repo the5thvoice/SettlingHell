@@ -10,11 +10,13 @@ public class SH_Enemey : MonoBehaviour {
     private Vector3 previousPosition;
     private Vector3 SecondPrevious;
     public float Speed = 0.5f;
+    public float Health = 0.1f;
+    public bool Active = true;
 
     public void Start()
     {
         CurrentDestination = new Vector3(Utility.RoundToPointFive(transform.position.x), Utility.RoundToPointFive(transform.position.y), transform.position.z);
-        
+        SH_GameManager.GM.Enemies.Add(gameObject);
 
     }
 
@@ -24,20 +26,48 @@ public class SH_Enemey : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
 
+        if (!Active)
+            return;
+        move();
+        CheckHealth(); 
+
+
+        
+	
+	}
+
+    /// <summary>
+    /// checks if Health is less then 0 and performs Death logic if true
+    /// </summary>
+    private void CheckHealth()
+    {
+        if (Health > 0)
+            return;
+
+        GetComponent<SpriteRenderer>().enabled = false;
+        Active = false;
+
+
+
+    }
+
+    /// <summary>
+    /// encapsulates all pathfinding and movement for enemy
+    /// </summary>
+    private void move()
+    {
         if (transform.position == TargetBuilding.transform.position)
             return;
 
         if (transform.position == CurrentDestination)
         {
-            
+
             updateCurrentDestination();
         }
-        
+
         transform.position = Vector3.MoveTowards(transform.position, CurrentDestination, Speed * Time.deltaTime);
-	
-	}
+    }
 
     /// <summary>
     /// updates the current destiation vector. if it can't up vector all it does is up date it's previous and second previous positons to allow it to backtrack
@@ -107,6 +137,13 @@ public class SH_Enemey : MonoBehaviour {
 
         
 
+
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    
 
     }
 

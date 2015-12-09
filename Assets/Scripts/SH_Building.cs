@@ -57,7 +57,7 @@ public class SH_Building : MonoBehaviour {
             SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
             
         }
-
+        
     }
 
     

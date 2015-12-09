@@ -46,14 +46,10 @@ public class SH_BattleTower : SH_Building {
 
         GameObject projectile;
 
-        if (SH_GameManager.GM.Ammo.Count < 1)
-            projectile = Instantiate(SH_GameManager.GM.AmmoPrefab, transform.position, transform.rotation) as GameObject;
-        else
-        {
-            projectile = SH_GameManager.GM.GetAmmo();
-            //pojectile = Instantiate(SH_GameManager.GM.AmmoPrefab, transform.position, transform.rotation) as GameObject;
-        }
-
+      
+        projectile = SH_GameManager.GM.GetAmmo();
+            
+        
         projectile.transform.position = transform.position;
         projectile.transform.rotation = transform.rotation;
         projectile.GetComponent<SpriteRenderer>().enabled = true;

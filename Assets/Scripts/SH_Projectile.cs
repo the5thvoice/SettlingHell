@@ -5,6 +5,7 @@ public class SH_Projectile : MonoBehaviour
 {
 
     public float Speed = 20;
+    public float Damage;
     public bool OnScreen;
 
     public void Start()
