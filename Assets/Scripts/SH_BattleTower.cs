@@ -5,7 +5,8 @@ using System;
 public class SH_BattleTower : SH_Building {
 
     public GameObject TargetEnemy;
-    public GameObject Ammotype;
+    
+    public GameObject Launcher;
     public float speed = 6f;
     public float FixedInterval;
     public float ShootInterval = 1;
@@ -53,7 +54,7 @@ public class SH_BattleTower : SH_Building {
         projectile = SH_GameManager.GM.GetAmmo();
             
         
-        projectile.transform.position = transform.position;
+        projectile.transform.position = Launcher.transform.position;
         projectile.transform.rotation = transform.rotation;
         projectile.GetComponent<SpriteRenderer>().enabled = true;
 

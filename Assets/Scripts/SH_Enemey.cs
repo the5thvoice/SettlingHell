@@ -152,10 +152,15 @@ public class SH_Enemey : MonoBehaviour {
         }
 
         Health -= collidedObject.GetComponent<SH_Projectile>().Damage;
+        collidedObject.GetComponent<SpriteRenderer>().enabled = false;
+        
 
     
 
     }
+
+   
+
 
     
 }

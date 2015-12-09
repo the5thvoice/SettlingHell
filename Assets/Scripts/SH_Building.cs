@@ -73,6 +73,18 @@ public class SH_Building : MonoBehaviour {
         transform.position = new Vector3(Utility.RoundToPointFive(Bpos.x), Utility.RoundToPointFive(Bpos.y), Bpos.z);
     }
 
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if(collision.gameObject.GetComponent<SH_Projectile>()== null)
+            return;
+
+        collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+    }
+
+
+
 
 
 
