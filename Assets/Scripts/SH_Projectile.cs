@@ -34,4 +34,10 @@ public class SH_Projectile : MonoBehaviour
 
 
     }
+
+    public void OnBecameVisible()
+    {
+        OnScreen = true;
+
+    }
 }

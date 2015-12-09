@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class SH_GameManager : MonoBehaviour {
 
@@ -41,6 +42,18 @@ public class SH_GameManager : MonoBehaviour {
 
             return _Ammo;
         }
+    }
+
+    internal GameObject GetAmmo()
+    {
+        foreach (GameObject GO in Ammo)
+        {
+            if (GO.GetComponent<SH_Projectile>().OnScreen)
+                continue;
+            return GO;
+        }
+
+        return Instantiate(AmmoPrefab) as GameObject;
     }
 
     public static SH_GameManager GM;
