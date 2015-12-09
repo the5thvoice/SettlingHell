@@ -11,6 +11,12 @@ public class SH_BattleTower : SH_Building {
     public float FixedInterval;
     public float ShootInterval = 1;
 
+    public void Start()
+    {
+        ShootInterval = FixedInterval + UnityEngine.Random.Range(0.01f, 0.05f);
+
+    }
+
     
 
     public override void Update()
@@ -43,19 +49,20 @@ public class SH_BattleTower : SH_Building {
         if (ShootInterval > 0)
         {
             ShootInterval -= Time.deltaTime;
+            
             return;
         }
 
-        ShootInterval = FixedInterval;
+        ShootInterval = FixedInterval + UnityEngine.Random.Range(0.01f, 0.05f);
 
         GameObject projectile;
 
       
         projectile = SH_GameManager.GM.GetAmmo();
-            
-        
-        projectile.transform.position = Launcher.transform.position;
+
         projectile.transform.rotation = transform.rotation;
+        projectile.transform.position = Launcher.transform.position;
+        
         projectile.GetComponent<SpriteRenderer>().enabled = true;
 
 

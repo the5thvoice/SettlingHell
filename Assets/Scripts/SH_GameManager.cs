@@ -62,7 +62,7 @@ public class SH_GameManager : MonoBehaviour {
     internal GameObject GetAmmo()
     {
 
-        if (Ammo.Count > 1)
+        if (Ammo.Count > 5)
         {
             foreach (GameObject GO in Ammo)
             {

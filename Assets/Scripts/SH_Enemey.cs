@@ -142,7 +142,7 @@ public class SH_Enemey : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision");
+        //Debug.Log("collision");
 
         GameObject collidedObject = collision.gameObject;
 
