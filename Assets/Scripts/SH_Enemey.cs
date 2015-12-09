@@ -29,7 +29,7 @@ public class SH_Enemey : MonoBehaviour {
 
         if (!Active)
             return;
-        move();
+        //move();
         CheckHealth(); 
 
 
@@ -142,6 +142,16 @@ public class SH_Enemey : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("collision");
+
+        GameObject collidedObject = collision.gameObject;
+
+        if (collidedObject.GetComponent<SH_Projectile>() == null)
+        {
+            return;
+        }
+
+        Health -= collidedObject.GetComponent<SH_Projectile>().Damage;
 
     
 

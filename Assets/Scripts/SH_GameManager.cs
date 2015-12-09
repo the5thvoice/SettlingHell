@@ -99,5 +99,21 @@ public class SH_GameManager : MonoBehaviour {
 
 
 
-    
+
+    /// <summary>
+    /// get a new viable target enemy
+    /// </summary>
+    /// <returns>game object</returns>
+    internal GameObject NewTargetEnemeny()
+    {
+        foreach (GameObject GO in Enemies)
+        {
+            if (!GO.GetComponent<SH_Enemey>().Active)
+                continue;
+
+            return GO;
+        }
+
+        return null;
+    }
 }

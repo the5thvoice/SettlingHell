@@ -26,6 +26,9 @@ public class SH_BattleTower : SH_Building {
     /// </summary>
     private void TrackTarget()
     {
+        if (TargetEnemy == null)
+            return;
+
         transform.LookAt(transform.position + new Vector3(0, 0, 1), TargetEnemy.transform.position - transform.position);
         Shoot();
 
@@ -66,6 +69,10 @@ public class SH_BattleTower : SH_Building {
     /// </summary>
     private void FindTarget()
     {
-        return;
+        if(TargetEnemy != null)
+            if (TargetEnemy.GetComponent<SH_Enemey>().Active)
+                return;
+
+        TargetEnemy = SH_GameManager.GM.NewTargetEnemeny();
     }
 }
