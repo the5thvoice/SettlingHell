@@ -22,6 +22,10 @@ public class SH_BattleTower : SH_Building {
     public override void Update()
     {
         base.Update();
+
+        if (CurrentState != BuildingState.Placed)
+            return;
+
         FindTarget();
         TrackTarget();
 
