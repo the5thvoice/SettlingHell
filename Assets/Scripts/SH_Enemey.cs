@@ -45,11 +45,19 @@ public class SH_Enemey : MonoBehaviour {
         if (Health > 0)
             return;
 
-        GetComponent<SpriteRenderer>().enabled = false;
+        Deactivate();
+
+
+
+    }
+
+    /// <summary>
+    /// deactivates enemy, rendering it available for respawn
+    /// </summary>
+    private void Deactivate()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         Active = false;
-
-
-
     }
 
     /// <summary>
@@ -58,7 +66,12 @@ public class SH_Enemey : MonoBehaviour {
     private void move()
     {
         if (transform.position == TargetBuilding.transform.position)
-            return;
+        {
+            //todo: damage building
+            Deactivate();
+
+        }
+            
 
         if (transform.position == CurrentDestination)
         {
@@ -159,8 +172,13 @@ public class SH_Enemey : MonoBehaviour {
 
     }
 
-   
 
 
-    
+
+
+
+    internal void ResetDestnations(Vector3 Reset)
+    {
+        CurrentDestination = Reset;
+    }
 }
