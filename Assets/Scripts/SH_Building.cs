@@ -13,7 +13,7 @@ public class SH_Building : MonoBehaviour {
     public BuildingState CurrentState;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 
         if (SH_GameManager.GM.DebugMode == true)
         {

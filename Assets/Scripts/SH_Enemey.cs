@@ -29,7 +29,7 @@ public class SH_Enemey : MonoBehaviour {
 
         if (!Active)
             return;
-        //move();
+        move();
         CheckHealth(); 
 
 

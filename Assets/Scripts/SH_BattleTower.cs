@@ -10,9 +10,11 @@ public class SH_BattleTower : SH_Building {
     public float speed = 6f;
     public float FixedInterval;
     public float ShootInterval = 1;
+    public float Range;
 
-    public void Start()
+    public override void Start()
     {
+        base.Start();
         ShootInterval = FixedInterval + UnityEngine.Random.Range(0.01f, 0.05f);
 
     }
@@ -81,10 +83,16 @@ public class SH_BattleTower : SH_Building {
     /// </summary>
     private void FindTarget()
     {
-        if(TargetEnemy != null)
-            if (TargetEnemy.GetComponent<SH_Enemey>().Active)
-                return;
+        if (TargetEnemy != null)// checks if tower has a current target
+        {
+            if (Vector3.Distance(transform.position, TargetEnemy.transform.position)<= Range)//chackes if targerts is in range
+                if (TargetEnemy.GetComponent<SH_Enemey>().Active)// makes sure the target is active
+                    return;
+        }
 
-        TargetEnemy = SH_GameManager.GM.NewTargetEnemeny();
+
+
+
+        TargetEnemy = SH_GameManager.GM.NewTargetEnemeny(transform.position, Range);
     }
 }

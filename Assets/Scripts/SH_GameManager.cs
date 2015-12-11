@@ -116,4 +116,26 @@ public class SH_GameManager : MonoBehaviour {
 
         return null;
     }
+
+    /// <summary>
+    /// takes a weapons origin point and max rang, retuns a viable target within rang
+    /// </summary>
+    /// <param name="Origin"></param>
+    /// <param name="Range"></param>
+    /// <returns></returns>
+    internal GameObject NewTargetEnemeny(Vector3 Origin, float Range)
+    {
+        foreach (GameObject GO in Enemies)
+        {
+            if (!GO.GetComponent<SH_Enemey>().Active)
+                continue;
+
+            if (Vector3.Distance(Origin, GO.transform.position) > Range)
+                continue;
+
+            return GO;
+        }
+
+        return null;
+    }
 }
