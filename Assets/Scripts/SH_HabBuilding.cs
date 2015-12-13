@@ -8,14 +8,28 @@ public class SH_HabBuilding : SH_Building {
     /// </summary>
     public float Population;
 
-    public override void OnMouseUp()
+    public override void Start()
     {
-        base.OnMouseUp();
+        base.Start();
 
+        if (SH_GameManager.GM.DebugMode)
+            MakeViableTarget();
+
+    }
+
+    private void MakeViableTarget()
+    {
         if (SH_GameManager.GM.ViableTargets.Contains(gameObject))
             return;
 
         SH_GameManager.GM.ViableTargets.Add(gameObject);
+    }
+
+    public override void OnMouseUp()
+    {
+        base.OnMouseUp();
+
+        MakeViableTarget();
 
     }
 
