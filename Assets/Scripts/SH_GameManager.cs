@@ -138,4 +138,23 @@ public class SH_GameManager : MonoBehaviour {
 
         return null;
     }
+
+    internal GameObject GetViableTarget(Vector3 position)
+    {
+        if (ViableTargets.Count < 1)
+            return null;
+
+        float dist = Vector3.Distance(ViableTargets[0].transform.position, position);
+        GameObject target = ViableTargets[0];
+        foreach (GameObject GO in ViableTargets)
+        {
+            if (Vector3.Distance(position, GO.transform.position) < dist)
+            {
+                dist = Vector3.Distance(position, GO.transform.position);
+                target = GO;
+            }
+        }
+
+        return target;
+    }
 }

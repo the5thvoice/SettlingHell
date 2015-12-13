@@ -12,6 +12,7 @@ public class SH_Enemey : MonoBehaviour {
     public float Speed = 0.5f;
     public float Health = 0.1f;
     public bool Active = true;
+    public float Strength;
 
     public void Start()
     {
@@ -29,6 +30,8 @@ public class SH_Enemey : MonoBehaviour {
 
         if (!Active)
             return;
+
+        CheckPotentialTarget();
         move();
         CheckHealth(); 
 
@@ -36,6 +39,19 @@ public class SH_Enemey : MonoBehaviour {
         
 	
 	}
+    /// <summary>
+    /// checks for a viable target, and if no target currently active set found target as new target
+    /// </summary>
+    private void CheckPotentialTarget()
+    {
+        if (TargetBuilding != null)
+            return;
+
+        TargetBuilding = SH_GameManager.GM.GetViableTarget(transform.position);
+
+        if (TargetBuilding == null)
+            Deactivate();
+    }
 
     /// <summary>
     /// checks if Health is less then 0 and performs Death logic if true
@@ -65,9 +81,11 @@ public class SH_Enemey : MonoBehaviour {
     /// </summary>
     private void move()
     {
+        // checks if it's reached it's ultimate target and applies damage
         if (transform.position == TargetBuilding.transform.position)
         {
-            //todo: damage building
+            if (TargetBuilding.GetComponent<SH_HabBuilding>() != null)
+                TargetBuilding.GetComponent<SH_HabBuilding>().Damage(Strength);
             Deactivate();
 
         }
@@ -137,7 +155,7 @@ public class SH_Enemey : MonoBehaviour {
             CurrentDestination = potentialDestinations[(int)Random.Range(0,potentialDestinations.Count-1 )];
         for (int i = 0; i < potentialDestinations.Count; i++)
         {
-            
+            // check how close the next potental destinatin is to it's target
             if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))
             {
                 CurrentDestination = potentialDestinations[i];

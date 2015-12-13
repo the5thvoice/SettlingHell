@@ -47,7 +47,7 @@ public class SH_Building : MonoBehaviour {
 	}
 
 
-    public void OnMouseUp()
+    public virtual void OnMouseUp()
     {
         
         if (CurrentState == BuildingState.OnMouse)
