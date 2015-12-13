@@ -45,7 +45,8 @@ public class SH_Enemey : MonoBehaviour {
     private void CheckPotentialTarget()
     {
         if (TargetBuilding != null)
-            return;
+            if(SH_GameManager.GM.ViableTargets.Contains(TargetBuilding))// checks to see if current target is still viable target
+                return;
 
         TargetBuilding = SH_GameManager.GM.GetViableTarget(transform.position);
 
@@ -72,6 +73,7 @@ public class SH_Enemey : MonoBehaviour {
     /// </summary>
     private void Deactivate()
     {
+        TargetBuilding = null;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         Active = false;
     }

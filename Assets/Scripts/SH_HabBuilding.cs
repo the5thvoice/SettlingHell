@@ -17,6 +17,9 @@ public class SH_HabBuilding : SH_Building {
 
     }
 
+    /// <summary>
+    /// sets the building to be included as a viable target for enemies
+    /// </summary>
     private void MakeViableTarget()
     {
         if (SH_GameManager.GM.ViableTargets.Contains(gameObject))
