@@ -33,6 +33,8 @@ public class SH_Enemey : MonoBehaviour {
             return;
 
         CheckPotentialTarget();
+        if (TargetBuilding == null)
+            return;
         move();
         CheckHealth(); 
 
@@ -108,8 +110,7 @@ public class SH_Enemey : MonoBehaviour {
     /// </summary>
     private void updateCurrentDestination()
     {
-        if (TargetBuilding == null)
-            return;
+        
 
         List<Vector3> potentialDestinations = new List<Vector3>();
         float y = CurrentDestination.y - 0.5f;
