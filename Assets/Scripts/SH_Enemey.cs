@@ -158,8 +158,10 @@ public class SH_Enemey : MonoBehaviour {
         previousPosition = CurrentDestination;
 
         //updats to next destination
-        if(potentialDestinations.Count > 0)
-            CurrentDestination = potentialDestinations[(int)Random.Range(0,potentialDestinations.Count-1 )];
+        if (potentialDestinations.Count > 0)
+            CurrentDestination = potentialDestinations[(int)Random.Range(0, potentialDestinations.Count - 1)];
+        else { return; }
+
         for (int i = 0; i < potentialDestinations.Count; i++)
         {
             // check how close the next potental destinatin is to it's target

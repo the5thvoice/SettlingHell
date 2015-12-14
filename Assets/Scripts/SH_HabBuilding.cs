@@ -12,8 +12,7 @@ public class SH_HabBuilding : SH_Building {
     {
         base.Start();
 
-        if (SH_GameManager.GM.DebugMode)
-            MakeViableTarget();
+        
 
     }
 

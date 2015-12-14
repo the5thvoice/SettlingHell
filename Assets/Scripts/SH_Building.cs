@@ -11,6 +11,7 @@ public enum BuildingState
 public class SH_Building : MonoBehaviour {
 
     public BuildingState CurrentState;
+    public float Cost;
 
 	// Use this for initialization
 	public virtual void Start () {
