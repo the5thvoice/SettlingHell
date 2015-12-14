@@ -7,15 +7,7 @@ public class SH_SpawnBuilding : MonoBehaviour {
 
     public GameObject BuildingPrefab;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
     public void SpawnBuilding()
     {
