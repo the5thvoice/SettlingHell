@@ -55,6 +55,7 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
+    public float TotalResource;
     /// <summary>
     /// Instansiate a projectile to be fired by Towers
     /// </summary>
