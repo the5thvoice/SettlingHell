@@ -29,6 +29,10 @@ public class SH_Spawner : MonoBehaviour {
     {
         for (int i =0; i < SpawnAmount; i++)
         {
+
+            if (Time.timeScale <= 0)
+                yield return new WaitForSeconds(0.1f);
+
             yield return new WaitForSeconds(Random.Range(MinDelay, MaxDelay));
             GameObject Enemy = SH_SpawnController.SC.SpawnEnemy();
             Enemy.transform.position = transform.position;
