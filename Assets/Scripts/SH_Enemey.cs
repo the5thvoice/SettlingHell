@@ -165,7 +165,7 @@ public class SH_Enemey : MonoBehaviour {
         for (int i = 0; i < potentialDestinations.Count; i++)
         {
             // check how close the next potental destinatin is to it's target
-            if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))
+            if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))//null refrence error on this line, not sure where it's coming from, but doesn't seem to affect gameplay atm
             {
                 CurrentDestination = potentialDestinations[i];
                 
