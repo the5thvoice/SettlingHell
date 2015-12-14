@@ -95,4 +95,6 @@ public class SH_BattleTower : SH_Building {
 
         TargetEnemy = SH_GameManager.GM.NewTargetEnemeny(transform.position, Range);
     }
+
+
 }
