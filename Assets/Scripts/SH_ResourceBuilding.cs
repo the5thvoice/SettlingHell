@@ -14,7 +14,7 @@ public class SH_ResourceBuilding : SH_Building {
         }
         set
         {
-            SH_GameManager.GM.TotalResource += value;
+            SH_GameManager.GM.TotalResource = value;
         }
     }
 
