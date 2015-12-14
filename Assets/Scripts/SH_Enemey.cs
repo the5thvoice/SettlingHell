@@ -13,6 +13,7 @@ public class SH_Enemey : MonoBehaviour {
     public float Health = 0.1f;
     public bool Active = true;
     public float Strength;
+    
 
     public void Start()
     {
@@ -107,6 +108,9 @@ public class SH_Enemey : MonoBehaviour {
     /// </summary>
     private void updateCurrentDestination()
     {
+        if (TargetBuilding == null)
+            return;
+
         List<Vector3> potentialDestinations = new List<Vector3>();
         float y = CurrentDestination.y - 0.5f;
         float x = CurrentDestination.x - 0.5f;
