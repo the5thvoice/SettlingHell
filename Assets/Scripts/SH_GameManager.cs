@@ -54,7 +54,9 @@ public class SH_GameManager : MonoBehaviour {
             return _Ammo;
         }
     }
-
+    /// <summary>
+    /// total amount of Resource currently availble
+    /// </summary>
     public float TotalResource;
     /// <summary>
     /// Instansiate a projectile to be fired by Towers
@@ -86,20 +88,7 @@ public class SH_GameManager : MonoBehaviour {
 
     }
     
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
-
+    
 
     /// <summary>
     /// get a new viable target enemy
@@ -139,7 +128,11 @@ public class SH_GameManager : MonoBehaviour {
 
         return null;
     }
-
+    /// <summary>
+    /// returns a "viable target" ie the target closset to the input postion
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns>GameObject</returns>
     internal GameObject GetViableTarget(Vector3 position)
     {
         if (ViableTargets.Count < 1)

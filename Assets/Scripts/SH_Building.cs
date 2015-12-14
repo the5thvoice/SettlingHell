@@ -53,7 +53,7 @@ public class SH_Building : MonoBehaviour {
         
         if (CurrentState == BuildingState.OnMouse)
         {
-
+            // checks if player has enoguh to place the building
             if(Cost > SH_GameManager.GM.TotalResource)
             {
                 Destroy(gameObject);

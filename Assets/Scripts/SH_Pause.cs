@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class SH_Pause : MonoBehaviour {
-
+    /// <summary>
+    /// pause or unpauses game when called
+    /// </summary>
 	public void Pause()
     {
         if (Time.timeScale > 0)

@@ -16,6 +16,9 @@ public class SH_Spawner : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// method that suscribes to the OnSpawnWave event
+    /// </summary>
     private void SpawnEnemy()
     {
 
@@ -25,6 +28,10 @@ public class SH_Spawner : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// contols when spawning spawns.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Spawn()
     {
         for (int i =0; i < SpawnAmount; i++)
@@ -46,10 +53,7 @@ public class SH_Spawner : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
 	
-	}
 
     
     public void OnDisable()

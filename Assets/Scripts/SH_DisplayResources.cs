@@ -19,7 +19,7 @@ public class SH_DisplayResources : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+        // displays the total resource availble to players
         TextDisp.text = "Resources: " + SH_GameManager.GM.TotalResource.ToString();
 	
 	}

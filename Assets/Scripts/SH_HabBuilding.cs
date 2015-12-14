@@ -29,6 +29,9 @@ public class SH_HabBuilding : SH_Building {
 
     public override void OnMouseUp()
     {
+
+        // need to repeat the same code here as in parent as bug accours where an empty game object is added to 
+        //viable target list in game manager, if base.OnMouseUp() is called
         if (CurrentState == BuildingState.OnMouse)
         {
 
@@ -42,8 +45,8 @@ public class SH_HabBuilding : SH_Building {
             CurrentState = BuildingState.Placed;
             SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
 
-        }
-
+        }// ende repeated code
+        
 
 
         MakeViableTarget();

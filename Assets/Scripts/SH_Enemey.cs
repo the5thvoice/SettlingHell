@@ -180,6 +180,7 @@ public class SH_Enemey : MonoBehaviour {
 
     }
 
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("collision");
@@ -203,7 +204,10 @@ public class SH_Enemey : MonoBehaviour {
 
 
 
-
+    /// <summary>
+    /// resets the destnation paramaters so, when the enemey respawns as a new enemy it will pathfind properly
+    /// </summary>
+    /// <param name="Reset"></param>
     internal void ResetDestnations(Vector3 Reset)
     {
         CurrentDestination = Reset;
