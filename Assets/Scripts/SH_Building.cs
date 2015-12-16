@@ -91,6 +91,26 @@ public class SH_Building : MonoBehaviour {
 
     }
 
+    public virtual void OnMouseEnter()
+    {
+        if (CurrentState == BuildingState.OnMouse)
+            return;
+
+        SH_DisplayStats.DS.DisplayName(gameObject.tag);
+
+    }
+
+    public virtual void OnMouseExit()
+    {
+        if (CurrentState == BuildingState.OnMouse)
+            return;
+
+        SH_DisplayStats.DS.Clear();
+
+    }
+
+
+
 
 
 

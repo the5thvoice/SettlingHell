@@ -8,6 +8,7 @@ public class SH_SpawnController : MonoBehaviour {
     public GameObject EnemyPrefab; 
     public float WaveCounter;
     public float WaveInterval;
+    public bool WaitingOnFirstWave;
     public float timer;
 
 
@@ -56,7 +57,16 @@ public class SH_SpawnController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (WaveCounter < 1)//todo: insert win condition here??
+        if (WaitingOnFirstWave)
+        {
+            // checks to see if a hab building is in play, hoolding off arrival of firstr wave
+            if (SH_GameManager.GM.ViableTargets != null && SH_GameManager.GM.ViableTargets.Count > 0)
+                WaitingOnFirstWave = false;
+
+            return;
+        }
+
+        if (WaveCounter < 1)
             return;
 
         timer += Time.deltaTime;
