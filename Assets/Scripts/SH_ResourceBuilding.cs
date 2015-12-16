@@ -39,4 +39,15 @@ public class SH_ResourceBuilding : SH_Building {
 
     }
 
+
+    public override void OnMouseEnter()
+    {
+        base.OnMouseEnter();
+
+        if (CurrentState == BuildingState.OnMouse)
+            return;
+
+        SH_DisplayStats.DS.DisplayLineTwo("Resource/Sec:", ResourcePerSecond);
+    }
+
 }

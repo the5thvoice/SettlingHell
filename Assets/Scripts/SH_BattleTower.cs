@@ -96,5 +96,14 @@ public class SH_BattleTower : SH_Building {
         TargetEnemy = SH_GameManager.GM.NewTargetEnemeny(transform.position, Range);
     }
 
+    public override void OnMouseEnter()
+    {
+        base.OnMouseEnter();
+
+        if (CurrentState == BuildingState.OnMouse)
+            return;
+
+        SH_DisplayStats.DS.DisplayLineTwo("Turret Range:", Range);
+    }
 
 }

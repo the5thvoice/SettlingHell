@@ -30,4 +30,9 @@ public class SH_DisplayStats : MonoBehaviour {
         LineOne.text = "";
         LineTwo.text = "";
     }
+
+    internal void DisplayLineTwo(string p, float number)
+    {
+        LineTwo.text = p+" "+ number;
+    }
 }

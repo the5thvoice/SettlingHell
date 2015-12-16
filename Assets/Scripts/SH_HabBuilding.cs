@@ -77,4 +77,14 @@ public class SH_HabBuilding : SH_Building {
     {
         Population -= Strength;
     }
+
+
+    public override void OnMouseEnter()
+    {
+        base.OnMouseEnter();
+        if (CurrentState == BuildingState.OnMouse)
+            return;
+
+        SH_DisplayStats.DS.DisplayLineTwo("Population:", Population);
+    }
 }
