@@ -11,6 +11,7 @@ public enum BuildingState
 public class SH_Building : MonoBehaviour {
 
     public BuildingState CurrentState;
+    public float Cost;
 
 	// Use this for initialization
 	public virtual void Start () {
@@ -52,7 +53,14 @@ public class SH_Building : MonoBehaviour {
         
         if (CurrentState == BuildingState.OnMouse)
         {
-            
+            // checks if player has enoguh to place the building
+            if(Cost > SH_GameManager.GM.TotalResource)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            SH_GameManager.GM.TotalResource -= Cost;
             CurrentState = BuildingState.Placed;
             SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
             

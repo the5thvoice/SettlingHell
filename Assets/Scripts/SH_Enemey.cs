@@ -13,6 +13,7 @@ public class SH_Enemey : MonoBehaviour {
     public float Health = 0.1f;
     public bool Active = true;
     public float Strength;
+    
 
     public void Start()
     {
@@ -32,6 +33,8 @@ public class SH_Enemey : MonoBehaviour {
             return;
 
         CheckPotentialTarget();
+        if (TargetBuilding == null)
+            return;
         move();
         CheckHealth(); 
 
@@ -107,6 +110,8 @@ public class SH_Enemey : MonoBehaviour {
     /// </summary>
     private void updateCurrentDestination()
     {
+        
+
         List<Vector3> potentialDestinations = new List<Vector3>();
         float y = CurrentDestination.y - 0.5f;
         float x = CurrentDestination.x - 0.5f;
@@ -153,12 +158,14 @@ public class SH_Enemey : MonoBehaviour {
         previousPosition = CurrentDestination;
 
         //updats to next destination
-        if(potentialDestinations.Count > 0)
-            CurrentDestination = potentialDestinations[(int)Random.Range(0,potentialDestinations.Count-1 )];
+        if (potentialDestinations.Count > 0)
+            CurrentDestination = potentialDestinations[(int)Random.Range(0, potentialDestinations.Count - 1)];
+        else { return; }
+
         for (int i = 0; i < potentialDestinations.Count; i++)
         {
             // check how close the next potental destinatin is to it's target
-            if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))
+            if (Vector3.Distance(potentialDestinations[i], TargetBuilding.transform.position) < Vector3.Distance(CurrentDestination, TargetBuilding.transform.position))//null refrence error on this line, not sure where it's coming from, but doesn't seem to affect gameplay atm
             {
                 CurrentDestination = potentialDestinations[i];
                 
@@ -172,6 +179,7 @@ public class SH_Enemey : MonoBehaviour {
 
 
     }
+
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -196,7 +204,10 @@ public class SH_Enemey : MonoBehaviour {
 
 
 
-
+    /// <summary>
+    /// resets the destnation paramaters so, when the enemey respawns as a new enemy it will pathfind properly
+    /// </summary>
+    /// <param name="Reset"></param>
     internal void ResetDestnations(Vector3 Reset)
     {
         CurrentDestination = Reset;

@@ -3,6 +3,12 @@ using System.Collections;
 
 public class SH_Spawner : MonoBehaviour {
 
+
+    public int SpawnAmount;
+    public float MaxDelay;
+    public float MinDelay;
+    public float Health;
+
 	// Use this for initialization
 	void Start () {
 
@@ -10,21 +16,44 @@ public class SH_Spawner : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// method that suscribes to the OnSpawnWave event
+    /// </summary>
     private void SpawnEnemy()
     {
-        GameObject Enemy = SH_SpawnController.SC.SpawnEnemy();
-        Enemy.transform.position = transform.position;
-        Enemy.GetComponent<SpriteRenderer>().enabled = true;
-        Enemy.GetComponent<SH_Enemey>().ResetDestnations(transform.position);
-        Enemy.GetComponent<SH_Enemey>().Active = true;
+
+        StartCoroutine(Spawn());
+        
 
 
     }
+
+    /// <summary>
+    /// contols when spawning spawns.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator Spawn()
+    {
+        for (int i =0; i < SpawnAmount; i++)
+        {
+
+            if (Time.timeScale <= 0)
+                yield return new WaitForSeconds(0.1f);
+
+            yield return new WaitForSeconds(Random.Range(MinDelay, MaxDelay));
+            GameObject Enemy = SH_SpawnController.SC.SpawnEnemy();
+            Enemy.transform.position = transform.position;
+            Enemy.GetComponent<SpriteRenderer>().enabled = true;
+            Enemy.GetComponent<SH_Enemey>().ResetDestnations(transform.position);
+            Enemy.GetComponent<SH_Enemey>().Health = Health;
+            Enemy.GetComponent<SH_Enemey>().Active = true;
+            
+
+
+        }
+    }
 	
-	// Update is called once per frame
-	void Update () {
 	
-	}
 
     
     public void OnDisable()

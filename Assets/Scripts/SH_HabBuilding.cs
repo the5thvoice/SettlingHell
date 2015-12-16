@@ -12,8 +12,7 @@ public class SH_HabBuilding : SH_Building {
     {
         base.Start();
 
-        if (SH_GameManager.GM.DebugMode)
-            MakeViableTarget();
+        
 
     }
 
@@ -30,7 +29,25 @@ public class SH_HabBuilding : SH_Building {
 
     public override void OnMouseUp()
     {
-        base.OnMouseUp();
+
+        // need to repeat the same code here as in parent as bug accours where an empty game object is added to 
+        //viable target list in game manager, if base.OnMouseUp() is called
+        if (CurrentState == BuildingState.OnMouse)
+        {
+
+            if (Cost > SH_GameManager.GM.TotalResource)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            SH_GameManager.GM.TotalResource -= Cost;
+            CurrentState = BuildingState.Placed;
+            SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
+
+        }// ende repeated code
+        
+
 
         MakeViableTarget();
 

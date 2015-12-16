@@ -26,7 +26,10 @@ public class SH_SpawnController : MonoBehaviour {
             SC = this;
     }
 
-
+    /// <summary>
+    /// retuns a vaild enemy or instanciats a new enemy if nessacary and returns it
+    /// </summary>
+    /// <returns>GameObject</returns>
     public GameObject SpawnEnemy()
     {
         GameObject newEnemy;
@@ -48,17 +51,12 @@ public class SH_SpawnController : MonoBehaviour {
     public delegate void SpawnWave();
     public static event SpawnWave OnSpawnWave; 
 
-	// Use this for initialization
-	void Start () {
-
-
 	
-	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (WaveCounter < 1)//todo: insert win condition here
+        if (WaveCounter < 1)//todo: insert win condition here??
             return;
 
         timer += Time.deltaTime;

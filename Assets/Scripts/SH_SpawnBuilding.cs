@@ -7,16 +7,10 @@ public class SH_SpawnBuilding : MonoBehaviour {
 
     public GameObject BuildingPrefab;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
+    /// <summary>
+    /// spawns a new building when called by the "gameObjects" OnClick() event
+    /// </summary>
     public void SpawnBuilding()
     {
         GameObject newBuilding = Instantiate(BuildingPrefab) as GameObject;
