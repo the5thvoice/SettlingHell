@@ -51,6 +51,8 @@ public class SH_Spawner : MonoBehaviour {
 
 
         }
+
+        SpawnAmount += SpawnAmount;
     }
 	
 	
