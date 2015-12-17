@@ -23,7 +23,7 @@ public class SH_SpawnController : MonoBehaviour {
 
     void Awake()
     {
-        if (SC== null)
+        
             SC = this;
     }
 

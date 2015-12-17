@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SH_HabBuilding : SH_Building {
 
+
+    
     /// <summary>
     /// tracks "Health" of building
     /// </summary>

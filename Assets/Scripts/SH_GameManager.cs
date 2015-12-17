@@ -81,10 +81,9 @@ public class SH_GameManager : MonoBehaviour {
 
     void Awake()
     {
-        if (GM == null)
-        {
+        
             GM = this;
-        }
+        
 
     }
     
@@ -151,4 +150,77 @@ public class SH_GameManager : MonoBehaviour {
 
         return target;
     }
+
+    /// <summary>
+    /// returns the combined populating of all hab buildings
+    /// </summary>
+    private float TotalPopulation
+    {
+        get
+        {
+            float pop = 0;
+
+            if (ViableTargets.Count < 1)
+                return pop;
+
+            foreach (GameObject go in ViableTargets)
+            {
+                pop += go.GetComponent<SH_HabBuilding>().Population;
+            }
+
+            return pop;
+
+        }
+    }
+    /// <summary>
+    /// returns true is no more enemies active in the game
+    /// </summary>
+    bool NoEnemies
+    {
+        get
+        {
+            foreach (GameObject ene in Enemies)
+            {
+                if (ene.GetComponent<SH_Enemey>().Active)
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
+
+    public delegate void WinCondition();
+    public static event WinCondition OnWinCondition;
+
+    public delegate void LoseCondition();
+    public static event LoseCondition OnLoseCondition;
+
+    public void Update()
+    {
+
+        if (TotalPopulation < 1)
+        {
+            OnLoseCondition();
+            return;
+        }
+            
+
+        if (SH_SpawnController.SC.WaveCounter > 0)
+            return;
+
+
+
+        if (NoEnemies)
+        {
+            OnWinCondition();
+            return;
+        }
+
+
+    }
+
+    
+
+
 }
