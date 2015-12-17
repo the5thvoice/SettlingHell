@@ -14,7 +14,9 @@ public class SH_EndGameMenu : MonoBehaviour {
         SH_GameManager.OnWinCondition += WinGame;
 	
 	}
-
+    /// <summary>
+    /// display game over message
+    /// </summary>
     private void LoseGame()
     {
         SH_GameManager.OnLoseCondition -= LoseGame;
@@ -24,7 +26,9 @@ public class SH_EndGameMenu : MonoBehaviour {
 
         
     }
-
+    /// <summary>
+    /// display wing game message
+    /// </summary>
     private void WinGame()
     {
         SH_GameManager.OnLoseCondition -= LoseGame;

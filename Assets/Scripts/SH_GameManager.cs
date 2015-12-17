@@ -189,17 +189,18 @@ public class SH_GameManager : MonoBehaviour {
         }
     }
 
-
+    // win event
     public delegate void WinCondition();
     public static event WinCondition OnWinCondition;
 
+    //lose event
     public delegate void LoseCondition();
     public static event LoseCondition OnLoseCondition;
 
     public void Update()
     {
 
-        if (TotalPopulation < 1)
+        if (TotalPopulation < 1)// population is < 1, game over
         {
             OnLoseCondition();
             return;
@@ -211,7 +212,7 @@ public class SH_GameManager : MonoBehaviour {
 
 
 
-        if (NoEnemies)
+        if (NoEnemies)// if no more enemies left win
         {
             OnWinCondition();
             return;

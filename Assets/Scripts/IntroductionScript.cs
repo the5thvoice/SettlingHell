@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// disable game introduction after a few seconds
+/// </summary>
 public class IntroductionScript : MonoBehaviour {
 
 	float timer = 5;

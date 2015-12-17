@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// current state of a building
+/// </summary>
 public enum BuildingState
 {
     Placed,
@@ -61,6 +63,8 @@ public class SH_Building : MonoBehaviour {
             }
 
             SH_GameManager.GM.TotalResource -= Cost;
+
+            // places building in selected location
             CurrentState = BuildingState.Placed;
             SH_GameManager.GM.OccupiredGrids.Add(transform.position, gameObject);
             
@@ -87,7 +91,7 @@ public class SH_Building : MonoBehaviour {
         if(collision.gameObject.GetComponent<SH_Projectile>()== null)
             return;
 
-        collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        collision.gameObject.GetComponent<SpriteRenderer>().enabled = false; // set so buildings block fireing lanes
 
     }
 
@@ -96,7 +100,7 @@ public class SH_Building : MonoBehaviour {
         if (CurrentState == BuildingState.OnMouse)
             return;
 
-        SH_DisplayStats.DS.DisplayName(gameObject.tag);
+        SH_DisplayStats.DS.DisplayLineOne(gameObject.tag);// displays info about the building
 
     }
 

@@ -180,10 +180,10 @@ public class SH_Enemey : MonoBehaviour {
 
     }
 
-
+    // detects when object is hit by a projectile
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("collision");
+        
 
         GameObject collidedObject = collision.gameObject;
 

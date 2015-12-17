@@ -4,9 +4,9 @@ using System;
 
 public class SH_BattleTower : SH_Building {
 
-    public GameObject TargetEnemy;
+    public GameObject TargetEnemy;//current enemy being targeted
     
-    public GameObject Launcher;
+    public GameObject Launcher;// spawn point for projectiles
     public float speed = 6f;
     public float FixedInterval;
     public float ShootInterval = 1;
